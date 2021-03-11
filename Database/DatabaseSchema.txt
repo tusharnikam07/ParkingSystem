@@ -1,0 +1,81 @@
+# Floor Table :
+
+CREATE TABLE `floor` (
+  `id` int(11) NOT NULL,
+  `totalCapacity` int(11) DEFAULT NULL,
+  `twoWheelerCapacity` int(11) DEFAULT NULL,
+  `smallCapacity` int(11) DEFAULT NULL,
+  `largeCapacity` int(11) DEFAULT NULL,
+  `heavyCapacity` int(11) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Id_UNIQUE` (`id`)
+)
+
+
+# Gate Table :
+
+CREATE TABLE `gate` (
+  `id` int(11) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Id_UNIQUE` (`id`)
+) 
+
+
+# Person Table:
+
+CREATE TABLE `person` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `personId` varchar(45) NOT NULL,
+  `idType` varchar(45) NOT NULL,
+  `firstName` varchar(30) DEFAULT NULL,
+  `lastName` varchar(30) DEFAULT NULL,
+  `mobileNo` char(10) DEFAULT NULL,
+  `address` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Id_UNIQUE` (`id`),
+  UNIQUE KEY `personId_UNIQUE` (`personId`)
+) 
+
+# Spot Table
+
+CREATE TABLE `spot` (
+  `id` int(11) NOT NULL,
+  `floorId` int(11) NOT NULL,
+  `type` varchar(45) NOT NULL,
+  `vehicleId` int(11) DEFAULT NULL,
+  `availability` tinyint(4) NOT NULL DEFAULT '1',
+  `status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`,`floorId`),
+  KEY `floorId` (`floorId`),
+  CONSTRAINT `spot_ibfk_1` FOREIGN KEY (`floorId`) REFERENCES `floor` (`id`) ON DELETE CASCADE
+)
+
+
+# Ticket Table
+
+CREATE TABLE `ticket` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gateId` int(11) NOT NULL,
+  `vehicleId` int(11) NOT NULL,
+  `floorId` int(11) NOT NULL,
+  `spotId` int(11) NOT NULL,
+  `issueTime` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Id_UNIQUE` (`id`)
+) 
+
+# Vehicle Table
+
+CREATE TABLE `vehicle` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `vehicleNo` varchar(15) NOT NULL,
+  `type` varchar(30) NOT NULL,
+  `personId` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Id_UNIQUE` (`vehicleNo`)
+)
+
+

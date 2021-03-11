@@ -1,0 +1,11 @@
+CREATE DEFINER=`root`@`localhost` TRIGGER `spot_AFTER_DELETE` AFTER DELETE ON `spot` FOR EACH ROW BEGIN
+if old.type = "Heavy" then
+	update floor set totalCapacity = totalCapacity-1 ,  heavyCapacity = heavyCapacity -1 where id = old.floorId;
+elseif old.type = "Small" then 
+	update floor set totalCapacity = totalCapacity-1 ,  smallCapacity = smallCapacity -1 where id = old.floorId;
+elseif old.type = "Large" then 
+	update floor set totalCapacity = totalCapacity-1 ,  largeCapacity = largeCapacity -1 where id = old.floorId;
+elseif old.type = "TwoWheeler" then 
+	update floor set totalCapacity = totalCapacity-1 ,  twoWheelerCapacity = twoWheelerCapacity -1 where id = old.floorId;
+end if;
+END
