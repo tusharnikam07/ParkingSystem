@@ -1,9 +1,10 @@
-                                                       # Parking System
+                                                        Parking System
                                                         
                                                         
 This is a project to manage a parking lot. It has an  ticketing system that facilitates the interactions between the user and the parking system.
 
 Project Detailing & Use Cases.
+
     •	A parking lot can hold up to 'n' cars at any given point in time.
     •	A parking lot has multiple floors and each floor has its own spots available.
     •	There are four types of parking spot in the system i.e Two Wheeler , Small , Large , Heavy.
@@ -27,6 +28,7 @@ Project Detailing & Use Cases.
 
 
 Technologies used in the project.
+
     1.	Maven project.
     2.	Mysql Database.
     3.	PlSQL Triggers.
